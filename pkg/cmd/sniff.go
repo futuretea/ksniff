@@ -323,7 +323,8 @@ func (o *Ksniff) Run() error {
 		log.Info("spawning wireshark!")
 
 		title := fmt.Sprintf("gui.window_title:%s/%s/%s", o.settings.UserSpecifiedNamespace, o.settings.UserSpecifiedPodName, o.settings.UserSpecifiedContainer)
-		cmd := exec.Command("wireshark", "-k", "-i", "-", "-o", title)
+		wiresharkcmd := fmt.Sprintf("sudo wireshark -k -i - -o %s", title)
+		cmd := exec.Command("/bin/sh", "-c", wiresharkcmd)
 
 		stdinWriter, err := cmd.StdinPipe()
 		if err != nil {

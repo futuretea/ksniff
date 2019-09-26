@@ -36,7 +36,6 @@ For manual installation, download the latest release package, unzip it and use t
 ## Build
 
 Requirements:
-1. libpcap-dev: for tcpdump compilation (Ubuntu: sudo apt-get install libpcap-dev)
 2. go 1.11 or newer
 
 Compiling:
@@ -46,9 +45,10 @@ Compiling:
     mac:        make darwin
  
 
-To compile a static tcpdump binary:
+To compile a static tcpdump binary use docker:
+    docker build -t futuretea/static-tcpdump .
+	docker run -it --rm -v ${PWD}/bin:/mnt futuretea/static-tcpdump mv /static-tcpdump /mnt
 
-    make static-tcpdump
 
 ### Usage
 
